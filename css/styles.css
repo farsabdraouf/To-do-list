@@ -1,0 +1,415 @@
+/* أنماط CSS */
+:root {
+    --background: #fff;
+    --text: #414856;
+    --check: #4f29f0;
+    --disabled: #c3c8de;
+    --border-radius: 10px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: url('../media/annie-spratt-Ki0-ea-Hgx4-unsplash.jpg') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    color: var(--text);
+}
+
+.container {
+    max-width: 90%;
+    width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 30px rgba(65, 72, 86, 0.05);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.task-input {
+    width: 96%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.task-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 5px;
+    background-color: var(--background);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.task-item:hover {
+    background-color: #f5f5f5;
+}
+
+.task-item .task-text {
+    flex-grow: 1;
+    margin-right: 10px;
+    word-break: break-word;
+}
+
+.task-item .task-actions {
+    display: flex;
+    align-items: center;
+}
+
+.task-item .task-delete,
+.task-item .task-edit {
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-left: 5px;
+    border-radius: 3px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.task-item .task-delete {
+    background-color: #ff4d4d;
+}
+
+.task-item .task-delete:hover {
+    background-color: #ff3333;
+}
+
+.task-item .task-edit {
+    background-color: #4d94ff;
+}
+
+.task-item .task-edit:hover {
+    background-color: #3385ff;
+}
+
+/* New styles for the checkbox */
+.task-item .task-complete {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+    height: 15px;
+    width: 15px;
+    outline: none;
+    border: 0;
+    margin: 0 15px 0 0;
+    cursor: pointer;
+    background: #587ed257;
+    display: grid;
+    align-items: center;
+}
+
+.task-item .task-complete::before,
+.task-item .task-complete::after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    top: auto;
+    background: var(--check);
+    border-radius: 2px;
+}
+
+.task-item .task-complete::before {
+    width: 0px;
+    right: 60%;
+    transform-origin: right bottom;
+}
+
+.task-item .task-complete::after {
+    width: 0px;
+    left: 40%;
+    transform-origin: left bottom;
+}
+
+.task-item .task-complete:checked::before {
+    animation: check-01 0.4s ease forwards;
+}
+
+.task-item .task-complete:checked::after {
+    animation: check-02 0.4s ease forwards;
+}
+
+.task-item.completed .task-text {
+    color: var(--disabled);
+    text-decoration: line-through;
+    animation: move 0.3s ease 0.1s forwards;
+}
+
+@keyframes move {
+    50% {
+        padding-left: 8px;
+        padding-right: 0px;
+    }
+    100% {
+        padding-right: 4px;
+    }
+}
+
+@keyframes check-01 {
+    0% {
+        width: 4px;
+        top: auto;
+        transform: rotate(0);
+    }
+    50% {
+        width: 0px;
+        top: auto;
+        transform: rotate(0);
+    }
+    51% {
+        width: 0px;
+        top: 8px;
+        transform: rotate(45deg);
+    }
+    100% {
+        width: 5px;
+        top: 8px;
+        transform: rotate(45deg);
+    }
+}
+
+@keyframes check-02 {
+    0% {
+        width: 4px;
+        top: auto;
+        transform: rotate(0);
+    }
+    50% {
+        width: 0px;
+        top: auto;
+        transform: rotate(0);
+    }
+    51% {
+        width: 0px;
+        top: 8px;
+        transform: rotate(-45deg);
+    }
+    100% {
+        width: 10px;
+        top: 8px;
+        transform: rotate(-45deg);
+    }
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 95%;
+        margin: 10px auto;
+        padding: 10px;
+    }
+
+    .task-item {
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 10px 5px;
+    }
+
+    .task-item .task-complete {
+        margin-right: 10px;
+    }
+
+    .task-item .task-text {
+        flex: 1;
+        margin-right: 10px;
+        word-break: break-word;
+        min-width: 0;
+    }
+
+    .task-item .task-actions {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-top: 5px;
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .task-input {
+        font-size: 14px;
+        width: 94%;
+    }
+
+    .bin-button,
+    .editBtn {
+        width: 30px;
+        height: 30px;
+    }
+
+    .bin-button svg,
+    .editBtn svg {
+        height: 12px;
+    }
+}
+/* أنماط جديدة لزر الحذف */
+.bin-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: rgb(255, 95, 95);
+    cursor: pointer;
+    border: 2px solid rgb(255, 201, 201);
+    transition-duration: 0.3s;
+  }
+  
+  .bin-bottom {
+    width: 12px;
+  }
+  
+  .bin-top {
+    width: 14px;
+    transform-origin: right;
+    transition-duration: 0.3s;
+  }
+  
+  .bin-button:hover .bin-top {
+    transform: rotate(45deg);
+  }
+  
+  .bin-button:hover {
+    background-color: rgb(255, 0, 0);
+  }
+  
+  .bin-button:active {
+    transform: scale(0.9);
+  }
+  
+  /* أنماط جديدة لزر التعديل */
+  .editBtn {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(93, 93, 116);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.123);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+  
+  .editBtn::before {
+    content: "";
+    width: 200%;
+    height: 200%;
+    background-color: rgb(102, 102, 141);
+    position: absolute;
+    z-index: 1;
+    transform: scale(0);
+    transition: all 0.3s;
+    border-radius: 50%;
+    filter: blur(10px);
+  }
+  
+  .editBtn:hover::before {
+    transform: scale(1);
+  }
+  
+  .editBtn:hover {
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.336);
+  }
+  
+  .editBtn svg {
+    height: 15px;
+    fill: white;
+    z-index: 3;
+    transition: all 0.2s;
+    transform-origin: bottom;
+  }
+  
+  .editBtn:hover svg {
+    transform: rotate(-15deg) translateX(5px);
+  }
+  
+  .editBtn::after {
+    content: "";
+    width: 20px;
+    height: 1.5px;
+    position: absolute;
+    bottom: 15px;
+    left: -5px;
+    background-color: white;
+    border-radius: 2px;
+    z-index: 2;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s ease-out;
+  }
+  
+  .editBtn:hover::after {
+    transform: scaleX(1);
+    left: 0px;
+    transform-origin: right;
+  }
+  
+  /* تعديلات إضافية لتناسب الأزرار الجديدة */
+  .task-item .task-actions {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .task-item .task-delete,
+  .task-item .task-edit {
+    padding: 0;
+    margin: 0;
+  }
+  
+  footer {
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 95%;
+        margin: 10px auto;
+        padding: 10px;
+    }
+
+    /* ... (other mobile styles remain unchanged) ... */
+
+    footer {
+        padding: 10px 5px;
+        font-size: 14px;
+    }
+}
